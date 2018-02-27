@@ -1,0 +1,22 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js",
+    "demo": "webpack hello.js hello.bundle.js --module-bind css=style-loader!css-loader --watch --progress --display-modules --display-reasons"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.10",
+    "style-loader": "^0.20.2",
+    "webpack": "^1.13.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
+  },
+  "description": ""
+}
