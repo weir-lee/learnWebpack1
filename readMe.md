@@ -64,3 +64,24 @@ webpack可以把任何资源当做模块进行打包
   }
   </code></pre>
   在根目录执行 webapck 命令，默认会把根目录下的 webpack.config.js 作为配置文件，可以使用 webapck --config filename指定配置文件。
+  * 多个入口，多个输出：对象语法
+   [name] 被 chunk 的 name 替换。
+   [hash] 被 compilation 生命周期的 hash 替换。
+   [chunkhash] 被 chunk 的 hash 替换。
+  <pre><code>
+  module.exports = {
+    // 打包的入口文件
+    entry: {
+    page1: './src/script/main.js',
+    page2: './src/script/b.js',
+    page3: './src/script/c.js'
+    },
+    output: {
+    // 打包后文件的输出路径
+    path: './dist/js',
+    // 打包生成的文件名
+    filename: '[name].[hash].js'
+    }
+  }
+  </code></pre>
+  [打包生成的文件截图](./demoImages/compile_directory.png)  [命令行截图](./demoImages/compile_cmd.png) 
