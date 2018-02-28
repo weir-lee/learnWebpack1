@@ -219,3 +219,37 @@ webpack可以把任何资源当做模块进行打包
       <p>Wed Feb 28 2018 16:17:40 GMT+0800 (中国标准时间)</p>
     <script type="text/javascript" src="page3.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page2.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page1.0a2e60c5ccfee7362b2f.js"></script></body>
     </html>
+    
+    
+* 多入口文件在模板 html 文件中的引入
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>webpack1 demo</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="<%= htmlWebpackPlugin.files.chunks.page1.entry%>"></script>
+    <script src="<%= htmlWebpackPlugin.files.chunks.page2.entry%>"></script>
+    </head>
+    <body>
+      <p>hello</p>
+      <% for (var key in htmlWebpackPlugin) { %>
+      <%= key %>
+      <% } %>
+
+      <% for (var key in htmlWebpackPlugin.files) { %>
+      <%= key%>: <%= JSON.stringify(htmlWebpackPlugin.files[key]) %>
+      <% } %>
+
+      <% for (var key in htmlWebpackPlugin.options) { %>
+      <%= key %>: <%= JSON.stringify(htmlWebpackPlugin.options[key]) %>
+      <% } %>
+
+      <p><%= htmlWebpackPlugin.options.date%></p>
+    </body>
+    <script src="<%= htmlWebpackPlugin.files.chunks.page3.entry%>"></script>
+    </html>
