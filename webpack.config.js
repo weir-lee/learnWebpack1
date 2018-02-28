@@ -20,11 +20,31 @@ module.exports = {
 
   plugins: [ 
     new htmlWebpackPlugin({
-      // 模板的路径根据webpack的上下文，可以在context选项配置，默认为根目录
+      filename: 'a.html',
       template: 'index.html',
-      inject: false,
-      // 在打包生成的 html 文件中拿到date 参数：htmlWebpackPlugin.options.date
-      date: new Date()
-    }) 
+      inject: 'body',
+      title: 'this is a.html',
+      // chunks: ['page1', 'page2']
+      excludeChunks: ['page3']
+    }),
+
+    new htmlWebpackPlugin({
+      filename: 'b.html',
+      template: 'index.html',
+      inject: 'body',
+      title: 'this is b.html',
+      // chunks: ['page2']
+      excludeChunks: ['page1', 'page3']
+    }),
+
+    new htmlWebpackPlugin({
+      filename: 'c.html',
+      template: 'index.html',
+      inject: 'body',
+      title: 'this is c.html',
+      // chunks: ['page3']
+      excludeChunks: ['page1']
+    })
+
   ]
 }
