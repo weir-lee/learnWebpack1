@@ -156,66 +156,66 @@ webpack可以把任何资源当做模块进行打包
     
   生成的html文件代码：
   
-  <!DOCTYPE html>
-  <html>
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>webpack1 demo</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <link href="" rel="stylesheet">
-  </head>
-  <body>
-    <p>hello</p>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>webpack1 demo</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    </head>
+    <body>
+      <p>hello</p>
 
-    files
+      files
 
-    options
-
-
-
-    publicPath
-
-    chunks
-
-    js
-
-    css
-
-    manifest
+      options
 
 
 
-    template
+      publicPath
 
-    filename
+      chunks
 
-    hash
+      js
 
-    inject
+      css
 
-    compile
-
-    favicon
-
-    minify
-
-    cache
-
-    showErrors
-
-    chunks
-
-    excludeChunks
-
-    title
-
-    xhtml
-
-    date
+      manifest
 
 
-    <p>Wed Feb 28 2018 16:17:40 GMT+0800 (中国标准时间)</p>
-  <script type="text/javascript" src="page3.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page2.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page1.0a2e60c5ccfee7362b2f.js"></script></body>
-  </html>
+
+      template
+
+      filename
+
+      hash
+
+      inject
+
+      compile
+
+      favicon
+
+      minify
+
+      cache
+
+      showErrors
+
+      chunks
+
+      excludeChunks
+
+      title
+
+      xhtml
+
+      date
+
+
+      <p>Wed Feb 28 2018 16:17:40 GMT+0800 (中国标准时间)</p>
+    <script type="text/javascript" src="page3.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page2.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page1.0a2e60c5ccfee7362b2f.js"></script></body>
+    </html>
