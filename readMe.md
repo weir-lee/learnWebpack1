@@ -37,3 +37,26 @@ webpack可以把任何资源当做模块进行打包
 * "scripts": {
     "demo": "webpack hello.js hello.bundle.js --module-bind css=style-loader!css-loader --watch --progress --display-modules --display-reasons"
   }
+  
+  # webpack1.0基础用法笔记（二）
+  ## 建立项目的webpack配置文件
+  + 在命令行使用webpack命令来配置显得不方便，使用 --config 命令可以指定 webpack的配置文件。本节主要内容是webpack如何使用配置文件。
+  ### 准备工作
+  + npm 初始化项目：npm init
+  + 局部安装webpack1：npm install --save-dev webpack@1
+  + 创建 index.html、src、script、css等目录
+  + 项目根目录下创建webpack 的配置文件 webpack.config.js
+  + [目录截图](./demoImages/project_directory_tree_2.png)
+  ### webpack配置文件 webpack.config.js
+  * 单个入口
+  module.exports = {
+    // 打包的入口文件
+    entry: './src/script/main.js',
+    output: {
+    // 打包后文件的输出路径
+    path: './dist/js',
+    // 打包生成的文件名
+    filename: 'bundle.js'
+    }
+  }
+  在根目录执行 webapck 命令，默认会把根目录下的 webpack.config.js 作为配置文件，可以使用 webapck --config filename指定配置文件。
