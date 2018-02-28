@@ -1,8 +1,11 @@
-# webpack1.0基础用法笔记
+# webpack1.0基础用法笔记（一）
+* 说明：该笔记的内容是 慕课网 webpack 深入与实践 的课程内容。
+* 项目目录结构：
+！[目录结构图](./demoImages/project_directory_tree.png)
 ## 安装
 1. 环境准备
     安装node，安装 npm
-2. 局部安装 webpack
+2. 局部安装 webpack1.0
    * 新建一个文件夹为项目根目录
    * 在根目录下打开cmd窗口，输入npm初始化项目命令：npm init，一路默认yes即可，会生成package.json文件
    * 使用 npm 局部安装 webpack命令：npm install --save-dev webpack@1.0
@@ -11,14 +14,14 @@
 "scripts": {
     "demo": "webpack hello.js hello.bundle.js"
   }。
-  在cmd中执行 npm run demo就会将 hello.js作为入口文件进行打包，最终生成hello.bundle.js打包文件。
+  在cmd中执行 npm run demo 就会将 hello.js作为入口文件进行打包，最终生成hello.bundle.js打包文件。
 ## webpack使用
 webpack可以把任何资源当做模块进行打包
 1. 打包css文件
     * 在某个js文件中 require 或者 import 一个 css 文件，打包的时候需要使用 css-loader 对 css 文件进行处理，这样才能将 css 文件当做一个模块引入。如果想在 html 片段中使用 css 的样式，还需要 style-loader 对 css 文件进行处理，最终在 html 里面会将样式写入到 style 标签里面。
     例如： 
-	    + npm install --save-dev css-loader style-loader
-	    + require('style-loader!css-loader!./style.css')
+      + npm install --save-dev css-loader style-loader
+      + require('style-loader!css-loader!./style.css')
 注意： 在对 css 文件进行处理的时候 style-loader 要写在前面，css-loader要写在后面，这（书写顺序）与执行顺序是相反的。
 2. webpack 的一些命令：
 + --module-bind
