@@ -9,6 +9,19 @@
 <link href="" rel="stylesheet">
 </head>
 <body>
-  <script src="./dist/js/bundle.js"></script>  
+  <p>hello</p>
+  <% for (var key in htmlWebpackPlugin) { %>
+    <%= key %>
+  <% } %>
+
+  <% for (var key in htmlWebpackPlugin.files) { %>
+    <%= key%>
+  <% } %>
+
+  <% for (var key in htmlWebpackPlugin.options) { %>
+    <%= key %>
+  <% } %>
+
+  <p><%= htmlWebpackPlugin.options.date%></p>
 </body>
 </html>

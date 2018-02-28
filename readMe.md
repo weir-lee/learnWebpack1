@@ -64,7 +64,7 @@ webpack可以把任何资源当做模块进行打包
   }
   </code></pre>
   在根目录执行 webapck 命令，默认会把根目录下的 webpack.config.js 作为配置文件，可以使用 webapck --config filename指定配置文件。
-  * 多个入口，多个输出：对象语法
+  * 多个入口，多个输出(多页面应用)：对象语法
    [name] 被 chunk 的 name 替换。
    [hash] 被 compilation 生命周期的 hash 替换。
    [chunkhash] 被 chunk 的 hash 替换。
@@ -85,3 +85,137 @@ webpack可以把任何资源当做模块进行打包
   }
   </code></pre>
   [打包生成的文件截图](./demoImages/compile_directory.png)  [命令行截图](./demoImages/compile_cmd.png) 
+  # webpack1.0基础用法笔记（三）
+  ## 自动化生成项目中的html页面
+  目的：每次打包后生成的文件名可能不一样，如何实现自动生成 html 页面，并自动引入打包后的脚本，这个时候需要借助webpack的插件 html-webpack-plugin。
+  * npm 安装插件：
+  npm install --save-dev html-webpack-plugin
+  * webpack 配置文件plugins中引用 html-webpack-plugin
+  * 想用某个 html 文件为模板生成新的html 文件，html-webpack-plugin提供了 template 选项
+  * 想把打包生成的 js 注入到html文件的某个位置，html-webpack-plugin提供了 jnject 选项('head', 'body', false)
+  * 想要在 html-webpack-plugin里面传入参数，在 html 文件里面获取，html 文件是ejs的模板文件，可以通过html-webpack-plugin.options.XXX得到参数。
+  代码示例 webpack.config.js
+  <pre><code>
+    var htmlWebpackPlugin = require('html-webpack-plugin')
+  module.exports = {
+    // 上下文默认为根目录
+    // context: '',
+    // 打包的入口文件
+    entry: {
+    page1: './src/script/main.js',
+    page2: './src/script/b.js',
+    page3: './src/script/c.js'
+    },
+    output: {
+    // 打包后文件的输出路径
+    path: './dist/js',
+    // 打包生成的文件名
+    filename: '[name].[hash].js'
+    },
+    plugins: [ 
+    new htmlWebpackPlugin({
+      // 模板的路径根据webpack的上下文，可以在context选项配置，默认为根目录
+      template: 'index.html',
+      inject: 'body',
+      // 在打包生成的 html 文件中拿到date 参数：htmlWebpackPlugin.options.date
+      date: new Date()
+    }) 
+    ]
+  }
+  </code></pre>
+  
+  模板 index.html 代码示例:
+  
+      <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>webpack1 demo</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    </head>
+    <body>
+      <p>hello</p>
+      <% for (var key in htmlWebpackPlugin) { %>
+      <%= key %>
+      <% } %>
+
+      <% for (var key in htmlWebpackPlugin.files) { %>
+      <%= key%>
+      <% } %>
+
+      <% for (var key in htmlWebpackPlugin.options) { %>
+      <%= key %>
+      <% } %>
+
+      <p><%= htmlWebpackPlugin.options.date%></p>
+    </body>
+    </html>
+    
+  生成的html文件代码：
+  
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>webpack1 demo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link href="" rel="stylesheet">
+  </head>
+  <body>
+    <p>hello</p>
+
+    files
+
+    options
+
+
+
+    publicPath
+
+    chunks
+
+    js
+
+    css
+
+    manifest
+
+
+
+    template
+
+    filename
+
+    hash
+
+    inject
+
+    compile
+
+    favicon
+
+    minify
+
+    cache
+
+    showErrors
+
+    chunks
+
+    excludeChunks
+
+    title
+
+    xhtml
+
+    date
+
+
+    <p>Wed Feb 28 2018 16:17:40 GMT+0800 (中国标准时间)</p>
+  <script type="text/javascript" src="page3.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page2.0a2e60c5ccfee7362b2f.js"></script><script type="text/javascript" src="page1.0a2e60c5ccfee7362b2f.js"></script></body>
+  </html>
