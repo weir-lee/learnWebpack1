@@ -11,10 +11,12 @@
    * 使用 npm 局部安装 webpack命令：npm install --save-dev webpack@1.0
    * 由于是局部安装的webpack，所以直接在cmd里输入 webpack 会报 webpack不是内部或外部命令，所以解决办法是：使用 npm 的scripts。在package.json文件 scripts 选项下自定义一个命令用来执行 webpack打包命令。
 例如：
-"scripts": {
+<pre><code>
+  "scripts": {
     "demo": "webpack hello.js hello.bundle.js"
-  }。
-  在cmd中执行 npm run demo 就会将 hello.js作为入口文件进行打包，最终生成hello.bundle.js打包文件。
+    }
+</code></pre>
+  在cmd中执行 npm run demo 就会 将 hello.js作为入口文件进行打包，最终生成hello.bundle.js打包文件。
 ## webpack使用
 webpack可以把任何资源当做模块进行打包
 1. 打包css文件
@@ -49,6 +51,7 @@ webpack可以把任何资源当做模块进行打包
   + [目录截图](./demoImages/project_directory_tree_2.png)
   ### webpack配置文件 webpack.config.js
   * 单个入口
+  <pre><code>
   module.exports = {
     // 打包的入口文件
     entry: './src/script/main.js',
@@ -59,4 +62,5 @@ webpack可以把任何资源当做模块进行打包
     filename: 'bundle.js'
     }
   }
+  </code></pre>
   在根目录执行 webapck 命令，默认会把根目录下的 webpack.config.js 作为配置文件，可以使用 webapck --config filename指定配置文件。
